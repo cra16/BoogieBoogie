@@ -20,7 +20,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-
+//HI
 public class NaverBooks extends Activity {
 	final int MENU_back = Menu.FIRST;
 	final int MENU_forward = Menu.FIRST + 1;
