@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity implements
+public class BoogieBoogie extends FragmentActivity implements
 		ActionBar.TabListener {
 
 	/**
@@ -40,7 +40,7 @@ public class MainActivity extends FragmentActivity implements
 		setContentView(R.layout.activity_main);
 		
 		
-		//ÃÊ±â È­¸é ·Îµù ½Ã ÀÌ¹ÌÁö ¾×Æ¼ºñÆ¼ ¶ç¿öÁÜ
+		//ï¿½Ê±ï¿½ È­ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ï¿½
 		startActivity(new Intent(this, LoadingActivity.class ));
 		
 		
