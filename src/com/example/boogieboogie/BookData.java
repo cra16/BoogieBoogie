@@ -8,6 +8,7 @@ public class BookData {
 	private String publisher = "";
 	private String pubdate = "";
 	private String description = "";
+	private String memo="";
 	
 	public String getTitle() {
 		return title;
@@ -64,4 +65,13 @@ public class BookData {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
 }
