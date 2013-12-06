@@ -2,12 +2,14 @@ package com.example.boogieboogie;
 
 import java.util.ArrayList;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,11 +18,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-//HI
+
 public class NaverBooks extends Activity {
 	final int MENU_back = Menu.FIRST;
 	final int MENU_forward = Menu.FIRST + 1;
@@ -30,6 +33,9 @@ public class NaverBooks extends Activity {
 	private ListView myList;
 	private BookParser bookParser;
 	private CustomAdapter adapter;
+	
+	private DBOpenHelper db_open; 	//db open helper class
+	private SQLiteDatabase db;		//db
 	
 	ArrayList<BookData> data;
 	private String info;
@@ -53,6 +59,10 @@ public class NaverBooks extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.find_book_listview);
 		
+		//DB Create and open
+		db_open = new DBOpenHelper(this);
+		db = db_open.getWritableDatabase();
+		
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 				.permitAll().build();
 		StrictMode.setThreadPolicy(policy);
@@ -68,19 +78,30 @@ public class NaverBooks extends Activity {
 		
 		myList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView arg0, View view, int position,
 					long arg3) {
+				String title = data.get(position).getTitle();
+				String isbn = data.get(position).getIsbn();
+				String image = data.get(position).getImage();
+				String author = data.get(position).getAuthor();
+				String publisher = data.get(position).getPublisher();
+				String pubdate = data.get(position).getPubdate();
+				String memo = data.get(position).getMemo();
+				
+				Log.i("title", title);
 				// TODO Auto-generated method stub
 				Object o = myList.getSelectedItem();
-				// SelectDialogActivity myDialog = new SelectDialogActivity();
-				// myDialog.show();
-				dialog();
+			//	BookData bookData = (BookData) myList.getSelectedItem();
+				dialog(title, isbn, image, author, publisher, pubdate, memo);
+				
+//				db.execSQL("INSERT INTO book_list" + "(book_title, book_isbn, book_image, book_author, book_publisher, book_pubdate, book_memo)"
+//						+" VALUES('"+bookData.getTitle().getItem(myList.getSelectedItem().)));
 			}
 			
 		});
 	}
-	
-	private void dialog() {
+
+	private void dialog(final String title,final String isbn,final String image,final String author,final String publisher,final String pubdate,final String memo) {
 		AlertDialog.Builder al_builder = new AlertDialog.Builder(this);
 		al_builder
 				.setMessage("Do you want to add this book?")
@@ -92,6 +113,11 @@ public class NaverBooks extends Activity {
 							public void onClick(DialogInterface dialog, int id) {
 								// TODO Auto-generated method stub
 								Log.i("yes", "1");
+								//insert new row into database
+								//adapter.add(new BookData(getApplicationContext(),));
+								
+								db.execSQL("INSERT INTO book_list" + "(book_title, book_isbn, book_image, book_author, book_publisher, book_pubdate, book_memo)"
+								+" VALUES('"+title+"','"+isbn+"','"+image+"','"+author+"','"+publisher+"','"+pubdate+"','"+memo+"');");
 							}
 						})
 				.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -111,6 +137,7 @@ public class NaverBooks extends Activity {
 		menu.add(0, MENU_back, 0, "Prev page");
 		menu.add(0, MENU_forward, 1, "Next page");
 		return true;
+		// 22222
 	}
 	
 	@Override
@@ -130,7 +157,6 @@ public class NaverBooks extends Activity {
 				start += 21;
 				getNewList(info, count, start);
 				break;
-		
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
