@@ -131,7 +131,7 @@ public class NaverBooks extends Activity {
 				start += 21;
 				getNewList(info, count, start);
 				break;
-		
+		//llll
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
