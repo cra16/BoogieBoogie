@@ -111,6 +111,7 @@ public class NaverBooks extends Activity {
 		menu.add(0, MENU_back, 0, "Prev page");
 		menu.add(0, MENU_forward, 1, "Next page");
 		return true;
+		//22222
 	}
 	
 	@Override
