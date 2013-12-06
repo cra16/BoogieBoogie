@@ -145,6 +145,7 @@ public class NaverBooks extends Activity {
 				handler.sendEmptyMessage(0);
 			}
 		}.start();
+		//hihihi
 	}
 	
 }
