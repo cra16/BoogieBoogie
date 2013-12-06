@@ -9,5 +9,6 @@
     <string name="title_etc">etc.</string>
     <string name="title_activity_find">FindActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_find_isbn">FindIsbnActivity</string>
 
 </resources>
