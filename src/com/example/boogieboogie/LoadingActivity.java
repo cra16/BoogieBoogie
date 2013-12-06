@@ -18,7 +18,7 @@ public class LoadingActivity extends Activity {
 			
 			@Override
 			public void run() {
-				finish(); // 3 ���� �̹����� �ݾƹ���
+				finish(); // 3 sec.
 			}
 		}, 3000);
 		
