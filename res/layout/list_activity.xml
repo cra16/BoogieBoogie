@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+   <GridLayout
+        android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/grid_list"
+		android:columnCount="1"
+		android:orientation="horizontal"
+        ><ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/text_boogieboogie" />
+        <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/text_boogieboogie" />
+        <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/text_boogieboogie" />
+    </GridLayout>
+
+   <ImageView
+       android:id="@+id/imageView1"
+       android:layout_width="100dp"
+       android:layout_height="wrap_content"
+       android:layout_above="@+id/btn_list_find"
+       android:layout_alignParentRight="true"
+       android:src="@drawable/text_boogieboogie" />
+
+   <EditText
+       android:id="@+id/editText_find_input"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentBottom="true"
+       android:layout_alignParentLeft="true"
+       android:layout_toLeftOf="@+id/imageView1"
+       android:ems="10" >
+
+       <requestFocus />
+   </EditText>
+
+   <Button
+       android:id="@+id/btn_list_find"
+       android:layout_width="35dp"
+       android:layout_height="35dp"
+       android:layout_alignParentBottom="true"
+       android:layout_toRightOf="@+id/editText_find_input"
+       android:background="@drawable/icon_find" />
+ 
+</RelativeLayout>
