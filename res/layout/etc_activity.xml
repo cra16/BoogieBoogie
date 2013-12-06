@@ -15,10 +15,10 @@
         android:src="@drawable/text_boogieboogie" />
 
     <CalendarView
-        android:id="@+id/calendar_etc"
+        android:id="@+id/calendarview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:startYear="2011"
+        android:spinnersShown="false"/>
     
 </RelativeLayout>
