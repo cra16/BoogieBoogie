@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import android.text.Html;
 import android.util.Log;
 
 public class BookParser {
@@ -47,7 +48,7 @@ public class BookParser {
 						if (tag.compareTo("title") == 0) {
 							item = new BookData();
 							String titlesrc = parser.nextText();
-							item.setTitle(titlesrc);
+							item.setTitle(stripHtml(titlesrc));
 							Log.i("NET", "START...");
 						}
 						// if (tag.compareTo("isbn") == 0) {
@@ -85,5 +86,9 @@ public class BookParser {
 			Log.i("NET", "Parsing fail");
 		}
 		return data;
+	}
+	
+	public String stripHtml(String html) {
+		return Html.fromHtml(html).toString();
 	}
 }
