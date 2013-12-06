@@ -116,7 +116,11 @@ public class BoogieBoogie extends FragmentActivity implements
 				case 1:
 					return new FindActivity();
 				case 2:
+				{
+					
 					return new EtcActivity();
+			
+				}
 			}
 			return null;
 		}

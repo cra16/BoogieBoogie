@@ -33,6 +33,7 @@
             android:label="@string/title_activity_find" >
         </activity>
         <activity android:name="FindInternetActivity"></activity>
+        <activity android:name="CalenderActivity"></activity>
         <activity android:name=".NaverBooks"></activity>
     </application>
 
