@@ -4,9 +4,8 @@ import android.os.Handler;
 import android.app.Activity;
 import android.os.Bundle;
 
-
 public class LoadingActivity extends Activity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -16,12 +15,12 @@ public class LoadingActivity extends Activity {
 		Handler hd = new Handler();
 		
 		hd.postDelayed(new Runnable() {
-			 
-            @Override
-            public void run() {
-                finish();       // 3 ÃÊÈÄ ÀÌ¹ÌÁö¸¦ ´Ý¾Æ¹ö¸²
-            }
-        }, 3000);
+			
+			@Override
+			public void run() {
+				finish(); // 3 ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾Æ¹ï¿½ï¿½ï¿½
+			}
+		}, 3000);
 		
 	}
 	

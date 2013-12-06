@@ -1,4 +1,3 @@
-
 package com.example.boogieboogie;
 
 import android.os.Bundle;
@@ -8,9 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class EtcActivity extends Fragment {
-	public EtcActivity(){
-	}
-
+	public EtcActivity() {}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -19,5 +17,4 @@ public class EtcActivity extends Fragment {
 		return view;
 	}
 	
-
 }

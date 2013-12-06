@@ -41,19 +41,19 @@ public class BookParser {
 				switch (parseEvent) {
 					case XmlPullParser.START_TAG:
 						String tag = parser.getName();
-//						if (tag.compareTo("channel") == 0) {
-//							break;
-//						}
+						// if (tag.compareTo("channel") == 0) {
+						// break;
+						// }
 						if (tag.compareTo("title") == 0) {
 							item = new BookData();
 							String titlesrc = parser.nextText();
 							item.setTitle(titlesrc);
 							Log.i("NET", "START...");
 						}
-//						if (tag.compareTo("isbn") == 0) {
-//							String isbnsrc = parser.nextText();
-//							item.setIsbn(isbnsrc);
-//						}
+						// if (tag.compareTo("isbn") == 0) {
+						// String isbnsrc = parser.nextText();
+						// item.setIsbn(isbnsrc);
+						// }
 						if (tag.compareTo("image") == 0) {
 							String imagesrc = parser.nextText();
 							item.setImage(imagesrc);
@@ -63,19 +63,19 @@ public class BookParser {
 							item.setAuthor(authorsrc);
 							data.add(item);
 						}
-//						if (tag.compareTo("publisher") == 0) {
-//							String publishersrc = parser.nextText();
-//							item.setPublisher(publishersrc);
-//						}
-//						if (tag.compareTo("pubdate") == 0) {
-//							String pubdatesrc = parser.nextText();
-//							item.setPubdate(pubdatesrc);
-//						}
-//						if (tag.compareTo("description") == 0) {
-//							String descriptionsrc = parser.nextText();
-//							item.setDescription(descriptionsrc);
-//							data.add(item);
-//						}
+						// if (tag.compareTo("publisher") == 0) {
+						// String publishersrc = parser.nextText();
+						// item.setPublisher(publishersrc);
+						// }
+						// if (tag.compareTo("pubdate") == 0) {
+						// String pubdatesrc = parser.nextText();
+						// item.setPubdate(pubdatesrc);
+						// }
+						// if (tag.compareTo("description") == 0) {
+						// String descriptionsrc = parser.nextText();
+						// item.setDescription(descriptionsrc);
+						// data.add(item);
+						// }
 						break;
 				}
 				parseEvent = parser.next();

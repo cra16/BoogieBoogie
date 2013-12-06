@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class FindInternetActivity extends Activity implements OnClickListener{
+public class FindInternetActivity extends Activity implements OnClickListener {
 	private EditText et;
 	private Button bt;
 	private String info;
@@ -30,8 +30,8 @@ public class FindInternetActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.find_internet_input);
 		
-		et = (EditText)findViewById(R.id.editText_find_input);
-		bt = (Button)findViewById(R.id.btn_find_input);
+		et = (EditText) findViewById(R.id.editText_find_input);
+		bt = (Button) findViewById(R.id.btn_find_input);
 		
 		et.setHint("검색할 도서명을 입력하세요");
 		bt.setOnClickListener(this);
@@ -40,15 +40,13 @@ public class FindInternetActivity extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		info=et.getText().toString();
+		info = et.getText().toString();
 		
-		Intent intent=new Intent(FindInternetActivity.this,NaverBooks.class);
-		Bundle data=new Bundle();
+		Intent intent = new Intent(FindInternetActivity.this, NaverBooks.class);
+		Bundle data = new Bundle();
 		data.putString("key", info);
 		intent.putExtras(data);
 		this.startActivity(intent);
 	}
-
-	
 	
 }

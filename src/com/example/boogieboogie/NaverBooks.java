@@ -20,7 +20,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-//HI
+
 public class NaverBooks extends Activity {
 	final int MENU_back = Menu.FIRST;
 	final int MENU_forward = Menu.FIRST + 1;
@@ -111,7 +111,7 @@ public class NaverBooks extends Activity {
 		menu.add(0, MENU_back, 0, "Prev page");
 		menu.add(0, MENU_forward, 1, "Next page");
 		return true;
-		//22222
+		// 22222
 	}
 	
 	@Override
@@ -131,7 +131,6 @@ public class NaverBooks extends Activity {
 				start += 21;
 				getNewList(info, count, start);
 				break;
-		//llll
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
@@ -146,7 +145,6 @@ public class NaverBooks extends Activity {
 				handler.sendEmptyMessage(0);
 			}
 		}.start();
-		//hihihi
 	}
 	
 }
