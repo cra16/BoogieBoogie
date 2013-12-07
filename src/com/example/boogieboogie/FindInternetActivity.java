@@ -33,7 +33,7 @@ public class FindInternetActivity extends Activity implements OnClickListener {
 		et = (EditText) findViewById(R.id.editText_find_input);
 		bt = (Button) findViewById(R.id.btn_find_input);
 		
-		et.setHint("검색할 도서명을 입력하세요");
+		et.setHint("Input the Keyword");
 		bt.setOnClickListener(this);
 	}
 	
