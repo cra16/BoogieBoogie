@@ -42,8 +42,8 @@ public class EtcActivity extends Fragment {
 				// TODO Auto-generated method stub
 
 				// If print date, need add 1 to Month
-				String str = (month + 1) + " " + dayOfMonth + ", " + year;
-				Log.d("tag", "1111111");
+				String str = year + "" + (month + 1) + "" + dayOfMonth;
+				
 				//Toast.makeText(getActivity().getBaseContext(), str,
 				//		Toast.LENGTH_SHORT).show();
 				//TextView tv = (TextView) dialog.findViewById(R.id.text_dialog);
