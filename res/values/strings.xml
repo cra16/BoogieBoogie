@@ -10,5 +10,7 @@
     <string name="title_activity_find">FindActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_find_isbn">FindIsbnActivity</string>
+    <string name="title_activity_image_grid_activity_on_calendar">ImageGridActivityOnCalendar</string>
+    <string name="title_activity_image_grid_adapter_on_calendar">ImageGridAdapterOnCalendar</string>
 
 </resources>

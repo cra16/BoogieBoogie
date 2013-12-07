@@ -11,10 +11,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 public class BoogieBoogie extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -39,7 +35,7 @@ public class BoogieBoogie extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		// �ʱ� ȭ�� �ε� �� �̹��� ��Ƽ��Ƽ �����
+		// Loading image. 
 		startActivity(new Intent(this, LoadingActivity.class));
 		
 		// Set up the action bar.
@@ -112,11 +108,15 @@ public class BoogieBoogie extends FragmentActivity implements
 			
 			switch (position) {
 				case 0:
-					return new FindActivity();
-				case 1:
 					return new ListActivity();
+				case 1:
+					return new FindActivity();
 				case 2:
+				{
+					
 					return new EtcActivity();
+			
+				}
 			}
 			return null;
 		}
