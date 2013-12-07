@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.InputFilter.LengthFilter;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddActivity extends Activity implements OnClickListener {
 	
@@ -20,22 +23,6 @@ public class AddActivity extends Activity implements OnClickListener {
 	private DBOpenHelper db_open; // db open helper class
 	private SQLiteDatabase db; // db
 	String title;
-	
-	@Override
-	public void onClick(View v) {
-		db_open = new DBOpenHelper(this);
-		db = db_open.getWritableDatabase();
-		
-		// TODO Auto-generated method stub
-		if (v.getId() == R.id.addButton) {
-			memo = editText_memo.getText().toString();
-			
-			// Update Memo column in database
-			db.execSQL("UPDATE book_list SET book_memo ='" + memo
-					+ "' where book_title='" + title + "';");
-		}
-		db.close();
-	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,5 +51,23 @@ public class AddActivity extends Activity implements OnClickListener {
 			editText_memo.setText(memo);
 		addBtn = (Button) findViewById(R.id.addButton);
 		addBtn.setOnClickListener(this);
+	}
+	
+	@Override
+	public void onClick(View v) {
+		db_open = new DBOpenHelper(this);
+		db = db_open.getWritableDatabase();
+		
+		// TODO Auto-generated method stub
+		if (v.getId() == R.id.addButton) {
+			memo = editText_memo.getText().toString();
+			
+			// Update Memo column in database
+			db.execSQL("UPDATE book_list SET book_memo ='" + memo
+					+ "' where book_title='" + title + "';");
+			Toast.makeText(AddActivity.this, "Your book note has saved ",
+					Toast.LENGTH_LONG).show();
+		}
+		db.close();
 	}
 }
