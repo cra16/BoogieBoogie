@@ -48,7 +48,7 @@
         </activity>
         <activity
             android:name="com.example.boogieboogie.ImageGridActivityOnCalendar"
-            android:label="@string/title_activity_image_grid_activity_on_calendar"
+            
 			android:theme="@android:style/Theme.Dialog"
 			
 			>
