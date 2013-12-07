@@ -9,13 +9,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.StrictMode;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -26,12 +19,20 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class FindIsbnActivity extends Activity {
 	
@@ -77,26 +78,23 @@ public class FindIsbnActivity extends Activity {
 		isbnSearchParser = new IsbnSearchParser();
 		// if(!DEBUGMODE){
 		try {
-			IntentIntegrator
-					.initiateScan(
-							this,
-							"Install Barcode Scanner?",
-							"This application requires you to install 'Barcode Scanner'. Would you like to install it?",
-							"Yes", "No");
+			IntentIntegrator integrator = new IntentIntegrator(this);
+			integrator.initiateScan();
+			// IntentIntegrator
+			// .initiateScan(
+			// this
+			// ,
+			// "Install Barcode Scanner?",
+			// "This application requires you to install 'Barcode Scanner'. Would you like to install it?",
+			// "Yes", "No"
+			// );
+			Log.i("DEBUG", "initiateScan");
 		} catch (Exception e) {
 			// This error is usually handled in IntentIntegrator
 			// AlertBox.show("Error", "Could not access Market",
 			// FindActivity.this);
 			e.printStackTrace();
 		}
-		// }
-		// else{
-		// //These are used for testing. It brings up a menu which
-		// allows for several applications to be chosen
-		// Intent myIntent = new Intent(v.getContext(),
-		// ExtraMenu.class);
-		// startActivityForResult(myIntent, 0);
-		// }
 	}
 	
 	private void dialog(final String title, final String isbn,
@@ -197,6 +195,13 @@ public class FindIsbnActivity extends Activity {
 						// intent.putExtras(bundle);
 						//
 						// startActivity(intent);
+					} else {
+						Toast.makeText(this, "No search result try again",
+								Toast.LENGTH_LONG).show();
+//						Intent intent = new Intent(FindIsbnActivity.this,
+//								(Activity)FindActivity.class);
+//						this.startActivity(intent);
+						break;
 					}
 					// Assume that it must be a string
 					// else {

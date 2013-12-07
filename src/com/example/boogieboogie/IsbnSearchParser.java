@@ -25,13 +25,13 @@ public class IsbnSearchParser {
 	public ArrayList<BookData> getBookData(final String queryIsbn) {
 		data = new ArrayList<BookData>();
 		BookData item = new BookData();
-	
+		
 		try {
 			URL queryString = new URL("http://openapi.naver.com/search?key="
 					+ APIKEY + "&query=" + queryIsbn
-					+ "&display=10&start=1&target=book_adv&d_isbn=" + queryIsbn);
+					+ "&display=1&start=1&target=book_adv&d_isbn=" + queryIsbn);
 			Log.i("DEBUG", queryString.toString());
-
+			
 			// Ready XML Pull Parser
 			XmlPullParserFactory parserCreator = XmlPullParserFactory
 					.newInstance();
@@ -60,8 +60,11 @@ public class IsbnSearchParser {
 							}
 							if (parser.getName().equals("image")) {
 								item.setImage(parser.nextText());
-								data.add(item);
 								Log.i("image", item.getImage());
+							}
+							if (parser.getName().equals("author")) {
+								item.setAuthor(parser.nextText());
+								data.add(item);
 							}
 						}
 						break;

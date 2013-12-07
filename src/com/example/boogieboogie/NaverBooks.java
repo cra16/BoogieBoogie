@@ -23,7 +23,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
@@ -145,7 +144,6 @@ public class NaverBooks extends Activity {
 									ioException.printStackTrace();
 								}
 								// 파일로 로컬하게 저장하는 것도 여기서 해야 함
-								//saveAsFile(image, title, bm);
 								saveToInternalStorage(title, bm);
 							}
 						})
@@ -160,10 +158,17 @@ public class NaverBooks extends Activity {
 		alert.show();
 	}
 	
-	private String saveToInternalStorage (String name, Bitmap bitmapImage) {
+	/*
+	 * public void saveImage(String imageURL, String fileName, Bitmap image) {
+	 * //File file = FileOutputStream fos = openFileOutput(fileName+".jpg",
+	 * Context.MODE_PRIVATE); fos.write(image.get);
+	 * 
+	 * }
+	 */
+	private String saveToInternalStorage(String name, Bitmap bitmapImage) {
 		ContextWrapper cw = new ContextWrapper(getApplicationContext());
 		File directory = cw.getDir("Test", Context.MODE_PRIVATE);
-		File mypath = new File (directory, name+".jpg" );
+		File mypath = new File(directory, name + ".jpg");
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(mypath);
