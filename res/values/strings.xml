@@ -3,12 +3,11 @@
 
     <string name="app_name">BoogieBoogie</string>
     <string name="action_settings">Settings</string>
-    <string name="title_find">Find Book</string>
-    <string name="title_list">List</string>
+    <string name="title_find">Search</string>
+    <string name="title_list">My Library</string>
     <string name="title_isbn">ISBN</string>
-    <string name="title_etc">etc.</string>
+    <string name="title_etc">Calendar</string>
     <string name="title_activity_find">FindActivity</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_find_isbn">FindIsbnActivity</string>
     <string name="title_activity_image_grid_activity_on_calendar">ImageGridActivityOnCalendar</string>
     <string name="title_activity_image_grid_adapter_on_calendar">ImageGridAdapterOnCalendar</string>

@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class AddActivity extends Activity implements OnClickListener {
-
+	
 	Button addBtn;
 	String memo;
 	EditText editText_memo;
@@ -20,6 +20,23 @@ public class AddActivity extends Activity implements OnClickListener {
 	private DBOpenHelper db_open; // db open helper class
 	private SQLiteDatabase db; // db
 	String title;
+	
+	@Override
+	public void onClick(View v) {
+		db_open = new DBOpenHelper(this);
+		db = db_open.getWritableDatabase();
+		
+		// TODO Auto-generated method stub
+		if (v.getId() == R.id.addButton) {
+			memo = editText_memo.getText().toString();
+			
+			// Update Memo column in database
+			db.execSQL("UPDATE book_list SET book_memo ='" + memo
+					+ "' where book_title='" + title + "';");
+		}
+		db.close();
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,33 +51,18 @@ public class AddActivity extends Activity implements OnClickListener {
 		String author = intent.getExtras().get("AUTHOR").toString();
 		String memo = intent.getExtras().get("MEMO").toString();
 		
-		tv_title = (TextView)findViewById(R.id.addTitle);
-		TextView tv_author = (TextView)findViewById(R.id.addAuthor);
+		tv_title = (TextView) findViewById(R.id.addTitle);
+		TextView tv_author = (TextView) findViewById(R.id.addAuthor);
 		
 		tv_title.setText(title);
 		tv_author.setText(author);
 		
-		editText_memo = (EditText)findViewById(R.id.editMemo);
-		if(memo.equals(""))
+		editText_memo = (EditText) findViewById(R.id.editMemo);
+		if (memo.equals(""))
 			editText_memo.setHint("Note for your book");
 		else
 			editText_memo.setText(memo);
-		addBtn = (Button)findViewById(R.id.addButton);
+		addBtn = (Button) findViewById(R.id.addButton);
 		addBtn.setOnClickListener(this);
-	}
-
-	@Override
-	public void onClick(View v) {
-		db_open = new DBOpenHelper(this);
-		db = db_open.getWritableDatabase();
-		
-		// TODO Auto-generated method stub
-		if(v.getId()==R.id.addButton){
-			memo = editText_memo.getText().toString();
-			
-			//Update Memo column in database
-			db.execSQL("UPDATE book_list SET book_memo ='"+memo+"' where book_title='"+title+"';");
-		}
-		db.close();
 	}
 }

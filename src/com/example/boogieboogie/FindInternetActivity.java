@@ -14,6 +14,18 @@ public class FindInternetActivity extends Activity implements OnClickListener {
 	private String info;
 	
 	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		info = et.getText().toString();
+		
+		Intent intent = new Intent(FindInternetActivity.this, NaverBooks.class);
+		Bundle data = new Bundle();
+		data.putString("key", info);
+		intent.putExtras(data);
+		this.startActivity(intent);
+	}
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -24,18 +36,6 @@ public class FindInternetActivity extends Activity implements OnClickListener {
 		
 		et.setHint("Input the Keyword");
 		bt.setOnClickListener(this);
-	}
-	
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		info = et.getText().toString();
-		
-		Intent intent = new Intent(FindInternetActivity.this, NaverBooks.class);
-		Bundle data = new Bundle();
-		data.putString("key", info);
-		intent.putExtras(data);
-		this.startActivity(intent);
 	}
 	
 }

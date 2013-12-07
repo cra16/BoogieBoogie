@@ -77,11 +77,10 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
-        public static final int hello_world=0x7f050007;
         public static final int title_activity_find=0x7f050006;
-        public static final int title_activity_find_isbn=0x7f050008;
-        public static final int title_activity_image_grid_activity_on_calendar=0x7f050009;
-        public static final int title_activity_image_grid_adapter_on_calendar=0x7f05000a;
+        public static final int title_activity_find_isbn=0x7f050007;
+        public static final int title_activity_image_grid_activity_on_calendar=0x7f050008;
+        public static final int title_activity_image_grid_adapter_on_calendar=0x7f050009;
         public static final int title_etc=0x7f050005;
         public static final int title_find=0x7f050002;
         public static final int title_isbn=0x7f050004;

@@ -14,21 +14,6 @@ public class FindActivity extends Fragment implements OnClickListener {
 	public FindActivity() {}
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.find_activity, null);
-		
-		Button search_btn = (Button) view.findViewById(R.id.btn_internet);
-		search_btn.setOnClickListener(this);
-		
-		Button isbn_btn = (Button) view.findViewById(R.id.btn_isbn);
-		isbn_btn.setOnClickListener(this);
-		
-		return view;
-	}
-	
-	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.btn_internet) {
 			Log.i("onclick", "1");
@@ -43,5 +28,20 @@ public class FindActivity extends Fragment implements OnClickListener {
 			this.startActivity(intent);
 			
 		}
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		View view = inflater.inflate(R.layout.find_activity, null);
+		
+		Button search_btn = (Button) view.findViewById(R.id.btn_internet);
+		search_btn.setOnClickListener(this);
+		
+		Button isbn_btn = (Button) view.findViewById(R.id.btn_isbn);
+		isbn_btn.setOnClickListener(this);
+		
+		return view;
 	}
 }
