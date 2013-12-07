@@ -158,6 +158,7 @@ public class NaverBooks extends Activity {
 		alert.show();
 	}
 	
+<<<<<<< HEAD
 	/*
 	 * public void saveImage(String imageURL, String fileName, Bitmap image) {
 	 * //File file = FileOutputStream fos = openFileOutput(fileName+".jpg",
@@ -166,6 +167,9 @@ public class NaverBooks extends Activity {
 	 * }
 	 */
 	private String saveToInternalStorage(String name, Bitmap bitmapImage) {
+=======
+	private String saveToInternalStorage (String name, Bitmap bitmapImage) {
+>>>>>>> add toast
 		ContextWrapper cw = new ContextWrapper(getApplicationContext());
 		File directory = cw.getDir("Test", Context.MODE_PRIVATE);
 		File mypath = new File(directory, name + ".jpg");
