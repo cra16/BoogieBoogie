@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,7 +18,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -50,7 +49,7 @@ public class NaverBooks extends Activity {
 			adapter = new CustomAdapter(NaverBooks.this,
 					R.layout.find_book_listview_item, data);
 			myList.setAdapter(adapter);
-			myList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);// ///
+			myList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		}
 	};
 	
@@ -137,7 +136,6 @@ public class NaverBooks extends Activity {
 		menu.add(0, MENU_back, 0, "Prev page");
 		menu.add(0, MENU_forward, 1, "Next page");
 		return true;
-		// 22222
 	}
 	
 	@Override
@@ -173,4 +171,7 @@ public class NaverBooks extends Activity {
 		}.start();
 	}
 	
+//	public Bitmap saveAsFile (String imagrUrl, String fileName) {
+//		Uri saveFile = FileUtil.getTemporaryFileName();
+//	}
 }

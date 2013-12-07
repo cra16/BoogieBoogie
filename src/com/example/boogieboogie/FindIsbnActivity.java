@@ -1,20 +1,40 @@
 package com.example.boogieboogie;
 
+import java.util.ArrayList;
+
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.StrictMode;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
+import android.widget.ListView;
 
 public class FindIsbnActivity extends Activity {
+	
+	private ProgressDialog dialog;
+	private IsbnSearchParser isbnSearchParser;
+	protected ListView myList;
+	protected CustomAdapter adapter;
+	
+	ArrayList<BookData> data;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_find_isbn);
+		setContentView(R.layout.find_book_listview);
 		
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+				.permitAll().build();
+		StrictMode.setThreadPolicy(policy);
+		myList = (ListView) findViewById(R.id.find_listview);
+		isbnSearchParser = new IsbnSearchParser();
 		// if(!DEBUGMODE){
 		try {
 			IntentIntegrator
@@ -27,6 +47,7 @@ public class FindIsbnActivity extends Activity {
 			// This error is usually handled in IntentIntegrator
 			// AlertBox.show("Error", "Could not access Market",
 			// FindActivity.this);
+			e.printStackTrace();
 		}
 		// }
 		// else{
@@ -51,23 +72,26 @@ public class FindIsbnActivity extends Activity {
 						return;
 					
 					result = result.trim();
-
+					Log.i("DEBUG", result);
 					// Check to see if it is a ISBN (checks if it is numeric)
-					if (result.trim().matches("[0-9]*")) {
-						Intent intent = new Intent(FindIsbnActivity.this,
-								BarcodeResult.class);
-						
-						// Pass the ISBN to the BarcodeResult form
-						Bundle bundle = new Bundle();
-						bundle.putString("ISBN", scanResult.getContents());
-						intent.putExtras(bundle);
-						
-						startActivity(intent);
+					if (result.matches("[0-9]*")) {
+						Log.i("DEBUG", "before getbookfromisbn");
+						getBookFromIsbn(result);
+						Log.i("DEBUG", "after getbookfromisbn");
+						// Intent intent = new Intent(FindIsbnActivity.this,
+						// BarcodeResult.class);
+						//
+						// // Pass the ISBN to the BarcodeResult form
+						// Bundle bundle = new Bundle();
+						// bundle.putString("ISBN", scanResult.getContents());
+						// intent.putExtras(bundle);
+						//
+						// startActivity(intent);
 					}
 					// Assume that it must be a string
-//					else {
-//						AlertBox.show("Found Message", result, this);
-//					}
+					// else {
+					// AlertBox.show("Found Message", result, this);
+					// }
 				}
 			}
 				break;
@@ -81,4 +105,24 @@ public class FindIsbnActivity extends Activity {
 		return true;
 	}
 	
+	public void getBookFromIsbn(final String queryIsbn) {
+		dialog = ProgressDialog.show(this, "Loading...", "Loading Book...",
+				true, false);
+		new Thread() {
+			public void run() {
+				data = isbnSearchParser.getBookData(queryIsbn);
+				handler.sendEmptyMessage(0);
+			}
+		}.start();
+	}
+	
+	private final Handler handler = new Handler() {
+		public void handleMessage(final Message msg) {
+			dialog.dismiss();
+			adapter = new CustomAdapter(FindIsbnActivity.this,
+					R.layout.find_book_listview_item, data);
+			myList.setAdapter(adapter);
+			myList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		}
+	};
 }
