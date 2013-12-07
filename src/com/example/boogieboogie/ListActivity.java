@@ -19,11 +19,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-<<<<<<< HEAD
-=======
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
->>>>>>> origin/HJ2
 import android.widget.GridView;
 import android.widget.ImageView;
 /**
