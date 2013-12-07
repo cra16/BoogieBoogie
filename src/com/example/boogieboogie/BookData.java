@@ -9,6 +9,7 @@ public class BookData {
 	private String pubdate = "";
 	private String description = "";
 	private String memo="";
+	private String date="";
 	
 	public BookData() {
 		// TODO Auto-generated constructor stub
@@ -82,6 +83,14 @@ public class BookData {
 
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }
