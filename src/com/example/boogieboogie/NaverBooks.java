@@ -50,7 +50,7 @@ public class NaverBooks extends Activity {
 			adapter = new CustomAdapter(NaverBooks.this,
 					R.layout.find_book_listview_item, data);
 			myList.setAdapter(adapter);
-			myList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);// ///
+			myList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		}
 	};
 	
@@ -137,7 +137,6 @@ public class NaverBooks extends Activity {
 		menu.add(0, MENU_back, 0, "Prev page");
 		menu.add(0, MENU_forward, 1, "Next page");
 		return true;
-		// 22222
 	}
 	
 	@Override

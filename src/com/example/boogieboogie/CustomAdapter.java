@@ -28,7 +28,8 @@ public class CustomAdapter extends ArrayAdapter<Object> {
 		super(context, textViewResourceId, items);
 		this.data = items;
 	}
-
+	
+	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		vView = convertView;
 		if (vView == null) {
