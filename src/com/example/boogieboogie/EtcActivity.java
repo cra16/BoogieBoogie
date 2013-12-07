@@ -53,9 +53,9 @@ public class EtcActivity extends Fragment {
 				
 				
 				Intent intent = new Intent(getActivity(), ImageGridActivityOnCalendar.class);
-				Bundle data = new Bundle();
-				data.putString("data", str);
-				intent.putExtras(data);
+				Bundle date = new Bundle();
+				date.putString("date", str);
+				intent.putExtras(date);
 				getActivity().startActivity(intent);
 						
 				//dialog.setTitle("Book of " + str);
