@@ -1,8 +1,8 @@
 package com.example.boogieboogie;
 
-import android.os.Handler;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 
 public class LoadingActivity extends Activity {
 	

@@ -23,7 +23,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
@@ -145,7 +144,11 @@ public class NaverBooks extends Activity {
 									ioException.printStackTrace();
 								}
 								// 파일로 로컬하게 저장하는 것도 여기서 해야 함
+<<<<<<< HEAD
 								//saveAsFile(image, title, bm);
+=======
+								// saveAsFile(image, title, bm);
+>>>>>>> origin/JJ
 								saveToInternalStorage(title, bm);
 							}
 						})
@@ -184,6 +187,7 @@ public class NaverBooks extends Activity {
 	}
 	
 	/*
+<<<<<<< HEAD
 	public boolean saveImageInternalStorage(Context context, String imageURL, String fileName, Bitmap fileImg) throws IOException{
 		BufferedOutputStream out = new BufferedOutputStream(context.openFileOutput(fileName, 0));
 		fileImg.compress(CompressFormat.JPEG, 100, out);
@@ -200,15 +204,34 @@ public class NaverBooks extends Activity {
 		File file = new File(filePath);
 		Log.i("file path", Environment.getExternalStorageDirectory() + "");
 		OutputStream out = null;
+=======
+	 * public void saveImage(String imageURL, String fileName, Bitmap image) {
+	 * //File file = FileOutputStream fos = openFileOutput(fileName+".jpg",
+	 * Context.MODE_PRIVATE); fos.write(image.get);
+	 * 
+	 * }
+	 */
+	private String saveToInternalStorage(String name, Bitmap bitmapImage) {
+		ContextWrapper cw = new ContextWrapper(getApplicationContext());
+		File directory = cw.getDir("Test", Context.MODE_PRIVATE);
+		File mypath = new File(directory, name + ".jpg");
+		FileOutputStream fos = null;
+>>>>>>> origin/JJ
 		try {
-			file.createNewFile();// 파일 생성
-			out = new FileOutputStream(file);
-			fileImg.compress(Bitmap.CompressFormat.PNG, 100, out);
-			out.close();
+			fos = new FileOutputStream(mypath);
+			Log.i("save", "1");
+			bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 	}*/
+=======
+		Log.i("save", directory.getAbsolutePath());
+		return directory.getAbsolutePath();
+	}
+>>>>>>> origin/JJ
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
