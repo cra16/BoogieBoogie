@@ -23,6 +23,7 @@ public class CustomAdapter extends ArrayAdapter<Object> {
 	View vView;
 	ImageView vImage;
 
+	
 	public CustomAdapter(Context context, int textViewResourceId,
 			ArrayList items) {
 		super(context, textViewResourceId, items);

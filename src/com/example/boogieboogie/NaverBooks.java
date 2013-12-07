@@ -1,5 +1,15 @@
 package com.example.boogieboogie;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -7,13 +17,20 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
+import android.provider.Settings.Global;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -89,13 +106,8 @@ public class NaverBooks extends Activity {
 				String memo = data.get(position).getMemo();
 				
 				Log.i("title", title);
-				// TODO Auto-generated method stub
 				Object o = myList.getSelectedItem();
-			//	BookData bookData = (BookData) myList.getSelectedItem();
 				dialog(title, isbn, image, author, publisher, pubdate, memo);
-				
-//				db.execSQL("INSERT INTO book_list" + "(book_title, book_isbn, book_image, book_author, book_publisher, book_pubdate, book_memo)"
-//						+" VALUES('"+bookData.getTitle().getItem(myList.getSelectedItem().)));
 			}
 			
 		});
@@ -111,13 +123,29 @@ public class NaverBooks extends Activity {
 							
 							@Override
 							public void onClick(DialogInterface dialog, int id) {
-								// TODO Auto-generated method stub
-								Log.i("yes", "1");
-								//insert new row into database
-								//adapter.add(new BookData(getApplicationContext(),));
-								
-								db.execSQL("INSERT INTO book_list" + "(book_title, book_isbn, book_image, book_author, book_publisher, book_pubdate, book_memo)"
-								+" VALUES('"+title+"','"+isbn+"','"+image+"','"+author+"','"+publisher+"','"+pubdate+"','"+memo+"');");
+									Bitmap bm =null;
+									//insert new row to db
+									db.execSQL("INSERT INTO book_list" + "(book_title, book_isbn, book_image, book_author, book_publisher, book_pubdate, book_memo)"
+											+" VALUES('"+title+"','"+isbn+"','"+image+"','"+author+"','"+publisher+"','"+pubdate+"','"+memo+"');");
+									
+									
+									URL imageUrl;
+									try {
+										imageUrl = new URL(image);
+										HttpURLConnection con = (HttpURLConnection) imageUrl
+												.openConnection();
+										BufferedInputStream bis = new BufferedInputStream(
+												con.getInputStream(), 10240);
+
+										bm = BitmapFactory.decodeStream(bis);
+										bis.close();
+									} catch (MalformedURLException malformedURLException) {
+										malformedURLException.printStackTrace();
+									} catch (IOException ioException) {
+										ioException.printStackTrace();
+									}
+									//파일로 로컬하게 저장하는 것도 여기서 해야 함
+									saveAsFile(image, title, bm);
 							}
 						})
 				.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -131,13 +159,43 @@ public class NaverBooks extends Activity {
 		alert.show();
 	}
 	
+	public void saveAsFile (String imageURL, String fileName, Bitmap fileImg) {
+		String filePath = "/sdcard/Test/"+fileName+".jpg";
+	//	File file = new File(Environment.getExternalStorageDirectory(), fileName+".jpg");
+		File file = new File(filePath);
+		Log.i("file path", Environment.getExternalStorageDirectory()+"");
+		OutputStream out = null;
+		try {
+			file.createNewFile();//파일 생성
+			out = new FileOutputStream(file);
+			fileImg.compress(Bitmap.CompressFormat.PNG, 100, out);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/*
+	public void getBitmapFile (String fileName) {
+		String filePath = "/sdcard/Test/"+fileName+".jpg";
+		File file = new File(filePath);
+		Log.i("file path", Environment.getExternalStorageDirectory()+"");
+		OutputStream out = null;
+		try {
+			file.createNewFile();//파일 생성
+			out = new FileOutputStream(file);
+			fileImg.compress(Bitmap.CompressFormat.PNG, 100, out);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	*/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		menu.add(0, MENU_back, 0, "Prev page");
 		menu.add(0, MENU_forward, 1, "Next page");
 		return true;
-		// 22222
 	}
 	
 	@Override

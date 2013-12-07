@@ -26,7 +26,6 @@ public class FindInternetActivity extends Activity implements OnClickListener {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.find_internet_input);
 		
@@ -39,7 +38,6 @@ public class FindInternetActivity extends Activity implements OnClickListener {
 	
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		info = et.getText().toString();
 		
 		Intent intent = new Intent(FindInternetActivity.this, NaverBooks.class);

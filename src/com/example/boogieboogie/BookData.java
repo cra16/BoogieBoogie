@@ -3,13 +3,23 @@ package com.example.boogieboogie;
 public class BookData {
 	private String title = "";
 	private String isbn = "";
-	private String image = "";
+	private String image = ""; 
 	private String author = "";
 	private String publisher = "";
 	private String pubdate = "";
 	private String description = "";
 	private String memo="";
 	
+	public BookData() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public BookData(String title, String bs, String author, String memo) {
+		this.title = title;
+		this.image = bs;
+		this.author = author;
+		this.memo = memo;
+	}
 	public String getTitle() {
 		return title;
 	}

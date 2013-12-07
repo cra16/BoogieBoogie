@@ -112,9 +112,9 @@ public class BoogieBoogie extends FragmentActivity implements
 			
 			switch (position) {
 				case 0:
-					return new FindActivity();
-				case 1:
 					return new ListActivity();
+				case 1:
+					return new FindActivity();
 				case 2:
 					return new EtcActivity();
 			}
