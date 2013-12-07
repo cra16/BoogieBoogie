@@ -1,10 +1,17 @@
 package com.example.boogieboogie;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,8 +19,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 /**
  * This fragment is for the first tab (List all books that the user has)
  * All books will be shown as Gridview using GridImgeAdapter class which extends BaseAdapter
@@ -29,22 +38,12 @@ public class ListActivity extends Fragment implements OnClickListener {
 	private int numOfItems;
 	private ArrayList<BookData> arrayList; //arrayList
 	
+	private String fileName;
 	private View fragmentView;
-	private ArrayList<Bitmap> images;
-	private final int CAMERA_RESULT = 1;
+	private ArrayList<Bitmap> images ;
 	final String table_name = "book_list";
-	private int[] imageIDs = new int[] { 
-			R.drawable.ic_launcher,
-			R.drawable.ic_launcher,
-			R.drawable.ic_launcher,
-			R.drawable.ic_launcher,
-			R.drawable.ic_launcher,
-			R.drawable.ic_launcher,
-			R.drawable.ic_launcher,
-			R.drawable.ic_launcher,
-			R.drawable.ic_launcher
-			};
-	//private int[] imageIDs
+	private GridView gv;
+	private GridListViewAdapter gvImgAdapter;
 	
 	public ListActivity() {}
 	
@@ -56,22 +55,13 @@ public class ListActivity extends Fragment implements OnClickListener {
 		
 		View view = inflater.inflate(R.layout.list_activity, null);
 		
-		
-		
-		GridView gv = (GridView)view.findViewById(R.id.gridViewImages);
-		
-		
-		ImageGridAdapterOnCalendar gvImgAdapter = new ImageGridAdapterOnCalendar(view.getContext(), imageIDs);
-		gv.setAdapter(gvImgAdapter);
-
-		
+		gv = (GridView)view.findViewById(R.id.gridViewImages);
+		images = new ArrayList<Bitmap>();
 		/*
 		gv.setOnClickListener(new OnItemClickListener() {
 			
 		});
 		*/
-		
-		
 		
 		//DB Create and Open
 		db_open = new DBOpenHelper(getActivity());
@@ -103,7 +93,36 @@ public class ListActivity extends Fragment implements OnClickListener {
 			c_memo.moveToNext();
 		}
 					
+		for(int i=0; i<numOfItems; i++)
+		{	
+			fileName= arrayList.get(i).getTitle()+".jpg";
+			images.add(loadImageFromStorage(fileName));
+		}
 		
+		view.invalidate();
+		
+		gvImgAdapter = new GridListViewAdapter(view.getContext(), images);
+		gv.setAdapter(gvImgAdapter);
+		
+		gv.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View v, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				//Toast.makeText(view.getContext(), "OK", Toast.LENGTH_SHORT).show();
+				
+				Intent intent = new Intent(getActivity(), AddActivity.class);
+				//Bundle date = new Bundle();
+				//date.putString("", str);
+				intent.putExtra("TITLE",arrayList.get(position).getTitle());
+				intent.putExtra("AUTHOR",arrayList.get(position).getAuthor());
+				intent.putExtra("MEMO", arrayList.get(position).getMemo());
+				getActivity().startActivity(intent);
+				
+				
+				
+			}
+		});
 		
 		return view;
 	}
@@ -113,7 +132,6 @@ public class ListActivity extends Fragment implements OnClickListener {
 		return db.rawQuery("SELECT "+col_name+" FROM "+table_name, null);
 	}
 	
-////////////////////////
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
@@ -127,13 +145,27 @@ public class ListActivity extends Fragment implements OnClickListener {
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		
-		
-		
-		
-		
-		
 	}
-	
+	//File file = new File (context.getFilesDir(), "yourFolder");
+	private Bitmap loadImageFromStorage (String filename) {
+		String path = "/data/data/com.example.boogieboogie/Test";
+		//File file = new File(getActivity().getFilesDir(), "Test");
+		ContextWrapper cw = new ContextWrapper(getActivity().getApplicationContext());
+		File directory = cw.getDir("Test", Context.MODE_PRIVATE);
+		try {
+			File f = new File(directory, filename);
+			Log.i("load", "2");
+
+			//File f = getActivity()().getFilesDir()+"/"+"filename";
+			Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+			return b;
+//			ImageView img = (ImageView)getView().findViewById(R.id.);
+//			img.setImageBitmap(b);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 }

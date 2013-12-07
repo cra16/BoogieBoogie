@@ -23,17 +23,23 @@ public final class R {
     public static final class drawable {
         public static final int boogie_book=0x7f020000;
         public static final int boogie_loading=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int icon_find=0x7f020003;
-        public static final int text_boogieboogie=0x7f020004;
+        public static final int ic_internet=0x7f020002;
+        public static final int ic_isbn=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int icon_find=0x7f020005;
+        public static final int text_boogieboogie=0x7f020006;
     }
     public static final class id {
-        public static final int action_settings=0x7f080010;
+        public static final int action_settings=0x7f080013;
+        public static final int addAuthor=0x7f080010;
+        public static final int addButton=0x7f080012;
+        public static final int addTitle=0x7f08000f;
         public static final int author=0x7f080008;
         public static final int btn_find_input=0x7f08000b;
         public static final int btn_internet=0x7f080003;
         public static final int btn_isbn=0x7f080004;
         public static final int calendarview=0x7f080002;
+        public static final int editMemo=0x7f080011;
         public static final int editText_find_input=0x7f08000a;
         public static final int find_linearlayout=0x7f080009;
         public static final int find_listview=0x7f080005;
@@ -41,7 +47,6 @@ public final class R {
         public static final int gridview_calendar=0x7f08000d;
         public static final int image=0x7f080006;
         public static final int imageView1=0x7f080001;
-        public static final int list_view_image=0x7f08000f;
         public static final int pager=0x7f080000;
         public static final int section_label=0x7f08000c;
         public static final int title=0x7f080007;
@@ -57,7 +62,7 @@ public final class R {
         public static final int fragment_main_dummy=0x7f030007;
         public static final int grid_activity_calendar=0x7f030008;
         public static final int list_activity=0x7f030009;
-        public static final int list_item=0x7f03000a;
+        public static final int list_add=0x7f03000a;
         public static final int loading_activity=0x7f03000b;
     }
     public static final class menu {

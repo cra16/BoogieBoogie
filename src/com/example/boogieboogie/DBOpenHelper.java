@@ -37,5 +37,5 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 		
 		super.close();
 	}
-	
 }
+
