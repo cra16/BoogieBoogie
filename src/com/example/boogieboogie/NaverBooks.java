@@ -144,11 +144,6 @@ public class NaverBooks extends Activity {
 									ioException.printStackTrace();
 								}
 								// 파일로 로컬하게 저장하는 것도 여기서 해야 함
-<<<<<<< HEAD
-								//saveAsFile(image, title, bm);
-=======
-								// saveAsFile(image, title, bm);
->>>>>>> origin/JJ
 								saveToInternalStorage(title, bm);
 							}
 						})
@@ -162,49 +157,8 @@ public class NaverBooks extends Activity {
 		alert.setTitle("Confirm");
 		alert.show();
 	}
-	/*
-	public void saveImage(String imageURL, String fileName, Bitmap image) {
-		//File file = 
-		FileOutputStream fos = openFileOutput(fileName+".jpg", Context.MODE_PRIVATE);
-		fos.write(image.get);
-		
-	}*/
-	private String saveToInternalStorage (String name, Bitmap bitmapImage) {
-		ContextWrapper cw = new ContextWrapper(getApplicationContext());
-		File directory = cw.getDir("Test", Context.MODE_PRIVATE);
-		File mypath = new File (directory, name+".jpg" );
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(mypath);
-			Log.i("save", "1");
-			bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
-			fos.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		Log.i("save", directory.getAbsolutePath());
-		return directory.getAbsolutePath();
-	}
 	
 	/*
-<<<<<<< HEAD
-	public boolean saveImageInternalStorage(Context context, String imageURL, String fileName, Bitmap fileImg) throws IOException{
-		BufferedOutputStream out = new BufferedOutputStream(context.openFileOutput(fileName, 0));
-		fileImg.compress(CompressFormat.JPEG, 100, out);
-		out.flush();
-		out.close();
-		
-		return true;
-	}*/
-	/*
-	public void saveAsFile(String imageURL, String fileName, Bitmap fileImg) {
-		String filePath = "/test/" + fileName + ".jpg";
-		// File file = new File(Environment.getExternalStorageDirectory(),
-		// fileName+".jpg");
-		File file = new File(filePath);
-		Log.i("file path", Environment.getExternalStorageDirectory() + "");
-		OutputStream out = null;
-=======
 	 * public void saveImage(String imageURL, String fileName, Bitmap image) {
 	 * //File file = FileOutputStream fos = openFileOutput(fileName+".jpg",
 	 * Context.MODE_PRIVATE); fos.write(image.get);
@@ -216,7 +170,6 @@ public class NaverBooks extends Activity {
 		File directory = cw.getDir("Test", Context.MODE_PRIVATE);
 		File mypath = new File(directory, name + ".jpg");
 		FileOutputStream fos = null;
->>>>>>> origin/JJ
 		try {
 			fos = new FileOutputStream(mypath);
 			Log.i("save", "1");
@@ -225,13 +178,9 @@ public class NaverBooks extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-	}*/
-=======
 		Log.i("save", directory.getAbsolutePath());
 		return directory.getAbsolutePath();
 	}
->>>>>>> origin/JJ
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
