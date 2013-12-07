@@ -156,11 +156,11 @@ public class NaverBooks extends Activity {
 	}
 	
 	public void saveAsFile(String imageURL, String fileName, Bitmap fileImg) {
-		String filePath = "/Downloads/" + fileName + ".jpg";
+		String filePath = "/Download/" + fileName + ".jpg";
 		// File file = new File(Environment.getExternalStorageDirectory(),
 		// fileName+".jpg");
 		File file = new File(filePath);
-		Log.i("file path", Environment.getExternalStorageDirectory() + "");
+		Log.i("file path", filePath + "");
 		OutputStream out = null;
 		try {
 			file.createNewFile();// 파일 생성
@@ -170,6 +170,7 @@ public class NaverBooks extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show();
 	}
 	
 	@Override
