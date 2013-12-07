@@ -36,12 +36,9 @@
             android:name="com.example.boogieboogie.FindActivity"
             android:label="@string/title_activity_find" >
         </activity>
-<<<<<<< HEAD
-        <activity android:name="FindInternetActivity"></activity>
-        <activity android:name="CalenderActivity"></activity>
-        <activity android:name=".NaverBooks"></activity>
-=======
         <activity android:name="com.example.boogieboogie.FindInternetActivity" >
+        </activity>
+        <activity android:name="com.example.boogieboogie.CalenderActivity" >
         </activity>
         <activity android:name="com.example.boogieboogie.NaverBooks" >
         </activity>
@@ -49,7 +46,13 @@
             android:name="com.example.boogieboogie.FindIsbnActivity"
             android:label="@string/title_activity_find_isbn" >
         </activity>
->>>>>>> origin/master
+        <activity
+            android:name="com.example.boogieboogie.ImageGridActivityOnCalendar"
+            android:label="@string/title_activity_image_grid_activity_on_calendar"
+			android:theme="@android:style/Theme.Dialog"
+			
+			>
+        </activity>
     </application>
 
 </manifest>
