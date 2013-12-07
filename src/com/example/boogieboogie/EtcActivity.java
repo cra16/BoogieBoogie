@@ -1,7 +1,6 @@
 //ETC PAGE
 package com.example.boogieboogie;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,9 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
-import android.widget.GridView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class EtcActivity extends Fragment {
 	public EtcActivity() {
