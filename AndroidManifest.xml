@@ -55,10 +55,6 @@
         </activity>
         <activity android:name="com.example.boogieboogie.AddActivity" >
         </activity>
-        <activity android:name="com.example.boogieboogie.AddActivity" >
-        </activity>
-        <activity android:name="com.example.boogieboogie.AddActivity" >
-        </activity>
     </application>
 
 </manifest>
